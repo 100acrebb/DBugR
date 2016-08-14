@@ -56,15 +56,17 @@ function DBugR.Profilers.Hook.Start()
 				local _, oldHooks = debug.getupvalue(DBugR.Profilers.Hook.OldHA, 4);
 				priority = 0;
 
-				for i = 1, #(oldHooks[ typ ] or {}) do 
+				if (oldHooks) then
+					for i = 1, #(oldHooks[ typ ] or {}) do 
 
-					if ( oldHooks[ typ ][ i ].name == name ) then 
+						if ( oldHooks[ typ ][ i ].name == name ) then 
 
-						priority = oldHooks[ typ ][ i ].priority;
-						break;
+							priority = oldHooks[ typ ][ i ].priority;
+							break;
+
+						end
 
 					end
-
 				end
 
 			end
